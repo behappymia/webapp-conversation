@@ -608,7 +608,7 @@ const Main: FC<IMainProps> = () => {
       //     }
       //   }))
       // },
-      onNodeFinished: ({ data }) => { ... },
+      onNodeFinished: ({ data }) => {},
       // onNodeFinished: ({ data }) => {
       //   const currentIndex = responseItem.workflowProcess!.tracing!.findIndex(item => item.node_id === data.node_id)
       //   responseItem.workflowProcess!.tracing[currentIndex] = data as any
