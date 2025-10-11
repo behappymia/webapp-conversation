@@ -570,52 +570,56 @@ const Main: FC<IMainProps> = () => {
           draft.splice(draft.findIndex(item => item.id === placeholderAnswerId), 1)
         }))
       },
-      onWorkflowStarted: ({ workflow_run_id, task_id }) => {
-        // taskIdRef.current = task_id
-        responseItem.workflow_run_id = workflow_run_id
-        responseItem.workflowProcess = {
-          status: WorkflowRunningStatus.Running,
-          tracing: [],
-        }
-        setChatList(produce(getChatList(), (draft) => {
-          const currentIndex = draft.findIndex(item => item.id === responseItem.id)
-          draft[currentIndex] = {
-            ...draft[currentIndex],
-            ...responseItem,
-          }
-        }))
-      },
-      onWorkflowFinished: ({ data }) => {
-        responseItem.workflowProcess!.status = data.status as WorkflowRunningStatus
-        setChatList(produce(getChatList(), (draft) => {
-          const currentIndex = draft.findIndex(item => item.id === responseItem.id)
-          draft[currentIndex] = {
-            ...draft[currentIndex],
-            ...responseItem,
-          }
-        }))
-      },
-      onNodeStarted: ({ data }) => {
-        responseItem.workflowProcess!.tracing!.push(data as any)
-        setChatList(produce(getChatList(), (draft) => {
-          const currentIndex = draft.findIndex(item => item.id === responseItem.id)
-          draft[currentIndex] = {
-            ...draft[currentIndex],
-            ...responseItem,
-          }
-        }))
-      },
-      onNodeFinished: ({ data }) => {
-        const currentIndex = responseItem.workflowProcess!.tracing!.findIndex(item => item.node_id === data.node_id)
-        responseItem.workflowProcess!.tracing[currentIndex] = data as any
-        setChatList(produce(getChatList(), (draft) => {
-          const currentIndex = draft.findIndex(item => item.id === responseItem.id)
-          draft[currentIndex] = {
-            ...draft[currentIndex],
-            ...responseItem,
-          }
-        }))
-      },
+      onWorkflowStarted: () => {},
+      // onWorkflowStarted: ({ workflow_run_id, task_id }) => {
+      //   // taskIdRef.current = task_id
+      //   responseItem.workflow_run_id = workflow_run_id
+      //   responseItem.workflowProcess = {
+      //     status: WorkflowRunningStatus.Running,
+      //     tracing: [],
+      //   }
+      //   setChatList(produce(getChatList(), (draft) => {
+      //     const currentIndex = draft.findIndex(item => item.id === responseItem.id)
+      //     draft[currentIndex] = {
+      //       ...draft[currentIndex],
+      //       ...responseItem,
+      //     }
+      //   }))
+      // },
+      onWorkflowFinished: () => {},
+      // onWorkflowFinished: ({ data }) => {
+      //   responseItem.workflowProcess!.status = data.status as WorkflowRunningStatus
+      //   setChatList(produce(getChatList(), (draft) => {
+      //     const currentIndex = draft.findIndex(item => item.id === responseItem.id)
+      //     draft[currentIndex] = {
+      //       ...draft[currentIndex],
+      //       ...responseItem,
+      //     }
+      //   }))
+      // },
+      onNodeStarted: () => {},
+      // onNodeStarted: ({ data }) => {
+      //   responseItem.workflowProcess!.tracing!.push(data as any)
+      //   setChatList(produce(getChatList(), (draft) => {
+      //     const currentIndex = draft.findIndex(item => item.id === responseItem.id)
+      //     draft[currentIndex] = {
+      //       ...draft[currentIndex],
+      //       ...responseItem,
+      //     }
+      //   }))
+      // },
+      onNodeFinished: ({ data }) => { ... },
+      // onNodeFinished: ({ data }) => {
+      //   const currentIndex = responseItem.workflowProcess!.tracing!.findIndex(item => item.node_id === data.node_id)
+      //   responseItem.workflowProcess!.tracing[currentIndex] = data as any
+      //   setChatList(produce(getChatList(), (draft) => {
+      //     const currentIndex = draft.findIndex(item => item.id === responseItem.id)
+      //     draft[currentIndex] = {
+      //       ...draft[currentIndex],
+      //       ...responseItem,
+      //     }
+      //   }))
+      // },
     })
   }
 
